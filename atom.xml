@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyiye.github.io/"/>
-  <updated>2019-09-09T16:51:32.000Z</updated>
+  <updated>2019-09-10T10:51:32.000Z</updated>
   <id>https://wangyiye.github.io/</id>
   
   <author>
@@ -17,9 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JavaScript What’s new in ES2019</title>
+    <link href="https://wangyiye.github.io/2019/09/10/JavaScript%20What%E2%80%99s%20new%20in%20ES2019/"/>
+    <id>https://wangyiye.github.io/2019/09/10/JavaScript What’s new in ES2019/</id>
+    <published>2019-09-10T10:51:32.000Z</published>
+    <updated>2019-09-10T10:51:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="JavaScript-What’s-new-in-ES2019"><a href="#JavaScript-What’s-new-in-ES2019" class="headerlink" title="JavaScript What’s new in ES2019"></a>JavaScript What’s new in ES2019</h2><p><img src="https://blog.tildeloop.com/media/javascript-es-2019.png" alt="Image text"></p><h3 id="Array-flat"><a href="#Array-flat" class="headerlink" title="Array.flat()"></a>Array.flat()</h3><p>现在可以递归地将嵌套数组扁平化到指定的深度。默认值是1，如果你想完全深入使用无穷大。该方法不修改原始数组，而是创建一个新的数组:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const arr1 = [1, 2, [3, 4]];</span><br><span class="line">arr1.flat(); // [1, 2, 3, 4]</span><br><span class="line"></span><br><span class="line">const arr2 = [1, 2, [3, 4, [5, 6]]];</span><br><span class="line">arr2.flat(2); // [1, 2, 3, 4, 5, 6]</span><br><span class="line"></span><br><span class="line">const arr3 = [1, 2, [3, 4, [5, 6, [7, 8]]]];</span><br><span class="line">arr3.flat(Infinity); // [1, 2, 3, 4, 5, 6, 7, 8]</span><br></pre></td></tr></table></figure><p>如果你的数组中有一个空槽，它将被删除:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr4 = [1, 2, , 4, 5];</span><br><span class="line">arr4.flat(); // [1, 2, 4, 5]</span><br></pre></td></tr></table></figure><h3 id="Array-flatMap"><a href="#Array-flatMap" class="headerlink" title="Array.flatMap()"></a>Array.flatMap()</h3><p>一个新的方法，结合了基本的map函数，然后使用新的Array.flat()方法将结果扁平化到1的深度:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const arr1 = [1, 2, 3];</span><br><span class="line"></span><br><span class="line">arr1.map(x =&gt; [x * 4]); // [[4], [8], [12]]</span><br><span class="line">arr1.flatMap(x =&gt; [x * 4]); // [4, 8, 12]</span><br></pre></td></tr></table></figure><p>另一个更有用的例子:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const sentence = [&quot;This is a&quot;, &quot;regular&quot;, &quot;sentence&quot;];</span><br><span class="line"></span><br><span class="line">sentence.map(x =&gt; x.split(&quot; &quot;)); // [[&quot;This&quot;,&quot;is&quot;,&quot;a&quot;],[&quot;regular&quot;],[&quot;sentence&quot;]]</span><br><span class="line">sentence.flatMap(x =&gt; x.split(&quot; &quot;)); // [&quot;This&quot;,&quot;is&quot;,&quot;a&quot;,&quot;regular&quot;, &quot;sentence&quot;]</span><br></pre></td></tr></table></figure><h3 id="String-trimStart-and-String-trimEnd"><a href="#String-trimStart-and-String-trimEnd" class="headerlink" title="String.trimStart() and String.trimEnd()"></a>String.trimStart() and String.trimEnd()</h3><p>除了string . trim()删除字符串两边的空格外，现在还有单独的方法只删除字符串两边的空格:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const test = &quot; hello &quot;;</span><br><span class="line"></span><br><span class="line">test.trim(); // &quot;hello&quot;;</span><br><span class="line">test.trimStart(); // &quot;hello &quot;;</span><br><span class="line">test.trimEnd(); // &quot; hello&quot;;</span><br></pre></td></tr></table></figure><h3 id="Object-fromEntries"><a href="#Object-fromEntries" class="headerlink" title="Object.fromEntries"></a>Object.fromEntries</h3><p>将键值对列表转换为对象的新方法。它执行与已经熟悉的函数对象相反的操作。将对象转换为数组时使用的项，以便更容易地进行操作。在转换之后，您将得到一个数组，但是现在您可以将操作后的数组返回到一个对象中。让我们试着用一个例子，我们想平方所有对象属性的值:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123; prop1: 2, prop2: 10, prop3: 15 &#125;;</span><br><span class="line"></span><br><span class="line">let array = Object.entries(obj); // [[&quot;prop1&quot;, 2], [&quot;prop2&quot;, 10], [&quot;prop3&quot;, 15]]</span><br></pre></td></tr></table></figure><p>让我们用一个简单的映射将键值对的新列表的值平方:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array = array.map(([key, value]) =&gt; [key, Math.pow(value, 2)]); // [[&quot;prop1&quot;, 4], [&quot;prop2&quot;, 100], [&quot;prop3&quot;, 225]]</span><br></pre></td></tr></table></figure><p>我们已经转换了对象值，但我们只剩下一个数组，这就是object . fromentries的作用，它将数组转换回一个对象:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const newObj = Object.fromEntries(array); // &#123;prop1: 4, prop2: 100, prop3: 225&#125;</span><br></pre></td></tr></table></figure><h3 id="Optional-Catch-Binding"><a href="#Optional-Catch-Binding" class="headerlink" title="Optional Catch Binding"></a>Optional Catch Binding</h3><p>新提案允许您完全省略catch()参数，因为在很多情况下，您不希望使用它:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">  //...</span><br><span class="line">&#125; catch (er) &#123;</span><br><span class="line">  //handle error with parameter er</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">try &#123;</span><br><span class="line">  //...</span><br><span class="line">&#125; catch &#123;</span><br><span class="line">  //handle error without parameter</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Symbol-description"><a href="#Symbol-description" class="headerlink" title="Symbol.description"></a>Symbol.description</h3><p>您现在可以访问符号的description属性，而不是使用toString()方法:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const testSymbol = Symbol(&quot;Desc&quot;);</span><br><span class="line"></span><br><span class="line">testSymbol.description; // &quot;Desc&quot;</span><br></pre></td></tr></table></figure><h3 id="Function-toString"><a href="#Function-toString" class="headerlink" title="Function.toString()"></a>Function.toString()</h3><p>现在，对函数调用toString()将返回函数的定义，包括空格和注释。之前我们有:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function /* foo comment */ foo() &#123;&#125;</span><br><span class="line"></span><br><span class="line">foo.toString(); // &quot;function foo() &#123;&#125;&quot;</span><br></pre></td></tr></table></figure><p>And now it’s:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo.toString(); // &quot;function /* foo comment */ foo() &#123;&#125;&quot;</span><br></pre></td></tr></table></figure><h3 id="JSON-parse-的改进"><a href="#JSON-parse-的改进" class="headerlink" title="JSON.parse()的改进"></a>JSON.parse()的改进</h3><p>行分隔符(\u2028)和段落分隔符(\u2029)符号现在可以正确解析，而不会导致SyntaxError。</p><p>翻译自 <a href="https://blog.tildeloop.com/posts/javascript-what%E2%80%99s-new-in-es2019" target="_blank" rel="noopener">https://blog.tildeloop.com/posts/javascript-what%E2%80%99s-new-in-es2019</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;JavaScript-What’s-new-in-ES2019&quot;&gt;&lt;a href=&quot;#JavaScript-What’s-new-in-ES2019&quot; class=&quot;headerlink&quot; title=&quot;JavaScript What’s new in ES201
+      
+    
+    </summary>
+    
+    
+      <category term="前端" scheme="https://wangyiye.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="指令" scheme="https://wangyiye.github.io/tags/%E6%8C%87%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>前端性能优化</title>
-    <link href="https://wangyiye.github.io/2019/09/09/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    <id>https://wangyiye.github.io/2019/09/09/面试题/</id>
+    <link href="https://wangyiye.github.io/2019/09/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E7%9A%84%E9%87%8D%E6%8E%92%E4%B8%8E%E9%87%8D%E7%BB%98/"/>
+    <id>https://wangyiye.github.io/2019/09/09/浏览器渲染的重排与重绘/</id>
     <published>2019-09-09T15:51:32.000Z</published>
     <updated>2019-09-09T16:51:32.000Z</updated>
     
@@ -44,8 +70,8 @@
   
   <entry>
     <title>面试题JS题</title>
-    <link href="https://wangyiye.github.io/2019/09/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E7%9A%84%E9%87%8D%E6%8E%92%E4%B8%8E%E9%87%8D%E7%BB%98/"/>
-    <id>https://wangyiye.github.io/2019/09/08/浏览器渲染的重排与重绘/</id>
+    <link href="https://wangyiye.github.io/2019/09/08/%E5%8E%9F%E7%90%86%E9%A2%98/"/>
+    <id>https://wangyiye.github.io/2019/09/08/原理题/</id>
     <published>2019-09-08T10:51:32.000Z</published>
     <updated>2019-09-08T10:51:32.000Z</updated>
     
