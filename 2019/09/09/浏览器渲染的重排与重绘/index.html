@@ -82,21 +82,24 @@
 
 
 
-<meta name="description" content="细说浏览器渲染的重排与重绘 前端性能优化因为涉及到计算机网络、数据算法、图形图像处理、浏览器渲染等多方面计算机知识，常作为前端工程师乐此不疲的技术讨论话题，也正因如此，它也是面试时容易被问及的面试题之一。  目录结构文章大致行文思路如下：  URL从输入到页面展示的过程  DOM和JavaScript的关系  为什么操作DOM会很“慢”  浏览器解析HTML的过程  重排  重绘  优化方案 UR">
+<meta name="description" content="细说浏览器渲染的重排与重绘 前端性能优化因为涉及到计算机网络、数据算法、图形图像处理、浏览器渲染等多方面计算机知识，常作为前端工程师乐此不疲的技术讨论话题，也正因如此，它也是面试时容易被问及的面试题之一。  目录结构 URL从输入到页面展示的过程  DOM和JavaScript的关系  为什么操作DOM会很“慢”  浏览器解析HTML的过程  重排  重绘  优化方案 URL从输入到页面展示的过程">
 <meta name="keywords" content="指令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端性能优化">
 <meta property="og:url" content="https://wangyiye.github.io/2019/09/09/浏览器渲染的重排与重绘/index.html">
 <meta property="og:site_name" content="yiYe&#39;s Blog">
-<meta property="og:description" content="细说浏览器渲染的重排与重绘 前端性能优化因为涉及到计算机网络、数据算法、图形图像处理、浏览器渲染等多方面计算机知识，常作为前端工程师乐此不疲的技术讨论话题，也正因如此，它也是面试时容易被问及的面试题之一。  目录结构文章大致行文思路如下：  URL从输入到页面展示的过程  DOM和JavaScript的关系  为什么操作DOM会很“慢”  浏览器解析HTML的过程  重排  重绘  优化方案 UR">
+<meta property="og:description" content="细说浏览器渲染的重排与重绘 前端性能优化因为涉及到计算机网络、数据算法、图形图像处理、浏览器渲染等多方面计算机知识，常作为前端工程师乐此不疲的技术讨论话题，也正因如此，它也是面试时容易被问及的面试题之一。  目录结构 URL从输入到页面展示的过程  DOM和JavaScript的关系  为什么操作DOM会很“慢”  浏览器解析HTML的过程  重排  重绘  优化方案 URL从输入到页面展示的过程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://wangyiye.github.io/2019/09/09/浏览器渲染的重排与重绘/1568204506778.png">
-<meta property="og:image" content="https://img.mukewang.com/5b543bda00015ce406240289.png">
+<meta property="og:image" content="https://wangyiye.github.io/2019/09/09/浏览器渲染的重排与重绘/img/8.png">
+<meta property="og:image" content="https://wangyiye.github.io/2019/09/09/浏览器渲染的重排与重绘/img/11.png">
+<meta property="og:image" content="https://wangyiye.github.io/2019/09/09/浏览器渲染的重排与重绘/img/10.png">
+<meta property="og:image" content="https://wangyiye.github.io/img/12.jpg">
+<meta property="og:image" content="https://wangyiye.github.io/2019/09/09/浏览器渲染的重排与重绘/img/9.png">
 <meta property="og:updated_time" content="2019-09-09T16:51:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能优化">
-<meta name="twitter:description" content="细说浏览器渲染的重排与重绘 前端性能优化因为涉及到计算机网络、数据算法、图形图像处理、浏览器渲染等多方面计算机知识，常作为前端工程师乐此不疲的技术讨论话题，也正因如此，它也是面试时容易被问及的面试题之一。  目录结构文章大致行文思路如下：  URL从输入到页面展示的过程  DOM和JavaScript的关系  为什么操作DOM会很“慢”  浏览器解析HTML的过程  重排  重绘  优化方案 UR">
-<meta name="twitter:image" content="https://wangyiye.github.io/2019/09/09/浏览器渲染的重排与重绘/1568204506778.png">
+<meta name="twitter:description" content="细说浏览器渲染的重排与重绘 前端性能优化因为涉及到计算机网络、数据算法、图形图像处理、浏览器渲染等多方面计算机知识，常作为前端工程师乐此不疲的技术讨论话题，也正因如此，它也是面试时容易被问及的面试题之一。  目录结构 URL从输入到页面展示的过程  DOM和JavaScript的关系  为什么操作DOM会很“慢”  浏览器解析HTML的过程  重排  重绘  优化方案 URL从输入到页面展示的过程">
+<meta name="twitter:image" content="https://wangyiye.github.io/2019/09/09/浏览器渲染的重排与重绘/img/8.png">
 
 
 
@@ -494,7 +497,7 @@ window.onmouseout = function () {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4.8k
+                  5.1k
                 </span>
               
 
@@ -510,7 +513,7 @@ window.onmouseout = function () {
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  17
+                  18
                 </span>
               
             </div>
@@ -535,8 +538,7 @@ window.onmouseout = function () {
         <h2 id="细说浏览器渲染的重排与重绘"><a href="#细说浏览器渲染的重排与重绘" class="headerlink" title="细说浏览器渲染的重排与重绘"></a>细说浏览器渲染的重排与重绘</h2><blockquote>
 <p>前端性能优化因为涉及到计算机网络、数据算法、图形图像处理、浏览器渲染等多方面计算机知识，常作为前端工程师乐此不疲的技术讨论话题，也正因如此，它也是面试时容易被问及的面试题之一。</p>
 </blockquote>
-<h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><p>文章大致行文思路如下：</p>
-<ul>
+<h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><ul>
 <li><p>URL从输入到页面展示的过程</p>
 </li>
 <li><p>DOM和JavaScript的关系</p>
@@ -618,14 +620,24 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
 
 </li>
 </ul>
-<h5 id="4-拿到ip地址后，浏览器再从URL中解析出端口号。"><a href="#4-拿到ip地址后，浏览器再从URL中解析出端口号。" class="headerlink" title="4. 拿到ip地址后，浏览器再从URL中解析出端口号。"></a>4. 拿到ip地址后，浏览器再从URL中解析出端口号。</h5><h5 id="5-拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。传送门：完整的tcp链接。"><a href="#5-拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。传送门：完整的tcp链接。" class="headerlink" title="5. 拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。传送门：完整的tcp链接。"></a>5. 拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。传送门：完整的tcp链接。</h5><h5 id="6-浏览器向服务器发送一条HTTP请求报文。"><a href="#6-浏览器向服务器发送一条HTTP请求报文。" class="headerlink" title="6. 浏览器向服务器发送一条HTTP请求报文。"></a>6. 浏览器向服务器发送一条HTTP请求报文。</h5><h5 id="7-服务器向浏览器返回一条HTTP响应报文。"><a href="#7-服务器向浏览器返回一条HTTP响应报文。" class="headerlink" title="7. 服务器向浏览器返回一条HTTP响应报文。"></a>7. 服务器向浏览器返回一条HTTP响应报文。</h5><pre><code>![Alt text](./1568204471765.png)
-
-+ 起始行
-+ 请求首部
-+ 请求主体</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;method&gt; &lt;request-URL&gt; &lt;version&gt;</span><br><span class="line">&lt;headers&gt;</span><br><span class="line"></span><br><span class="line">&lt;entity-body&gt;</span><br></pre></td></tr></table></figure>
-
+<h5 id="4-拿到ip地址后，浏览器再从URL中解析出端口号。"><a href="#4-拿到ip地址后，浏览器再从URL中解析出端口号。" class="headerlink" title="4. 拿到ip地址后，浏览器再从URL中解析出端口号。"></a>4. 拿到ip地址后，浏览器再从URL中解析出端口号。</h5><h5 id="5-拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。"><a href="#5-拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。" class="headerlink" title="5. 拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。"></a>5. 拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。</h5><p><img src="./img/8.png" alt="Image text"></p>
 <ul>
-<li><p>响应报文：所有经过传输协议，服务器返回给客户端的内容<br><img src="./1568204506778.png" alt="Alt text"></p>
+<li>第一次握手：由浏览器发起，告诉服务器我要发送请求了</li>
+<li>第二次握手：由服务器发起，告诉浏览器我准备接受了，你赶紧发送吧</li>
+<li>第三次握手：由浏览器发送，告诉服务器，我马上就发了，准备接受吧</li>
+</ul>
+<h5 id="6-浏览器向服务器发送一条HTTP请求报文。"><a href="#6-浏览器向服务器发送一条HTTP请求报文。" class="headerlink" title="6. 浏览器向服务器发送一条HTTP请求报文。"></a>6. 浏览器向服务器发送一条HTTP请求报文。</h5><h5 id="7-服务器向浏览器返回一条HTTP响应报文。"><a href="#7-服务器向浏览器返回一条HTTP响应报文。" class="headerlink" title="7. 服务器向浏览器返回一条HTTP响应报文。"></a>7. 服务器向浏览器返回一条HTTP响应报文。</h5><ul>
+<li><p>HTTP报文：请求报文+响应报文</p>
+</li>
+<li><p>请求报文 ：所有经过传输协议，客户端传递给服务器的内容<br><img src="./img/11.png" alt="Image text"></p>
+<ul>
+<li>起始行</li>
+<li>请求首部</li>
+<li>请求主体<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;method&gt; &lt;request-URL&gt; &lt;version&gt;</span><br><span class="line">&lt;headers&gt;</span><br><span class="line"></span><br><span class="line">&lt;entity-body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>响应报文：所有经过传输协议，服务器返回给客户端的内容<br><img src="./img/10.png" alt="Image text"></p>
 <ul>
 <li>HTTP状态码的信息</li>
 <li>响应首部</li>
@@ -652,15 +664,22 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
 <li>500  Internal Server Error未知服务器错误</li>
 <li>503 Service Unavailable 服务器超负荷</li>
 </ul>
-<h5 id="8-关闭连接-浏览器解析文档。"><a href="#8-关闭连接-浏览器解析文档。" class="headerlink" title="8. 关闭连接 浏览器解析文档。"></a>8. 关闭连接 浏览器解析文档。</h5><p><img src="https://img.mukewang.com/5b543bda00015ce406240289.png" alt="Image text"></p>
+<h5 id="8-关闭连接-浏览器解析文档。"><a href="#8-关闭连接-浏览器解析文档。" class="headerlink" title="8. 关闭连接 浏览器解析文档。"></a>8. 关闭连接 浏览器解析文档。</h5><p><img src="/img/12.jpg" alt="Image text">)</p>
 <ul>
 <li>解析HTML，生成DOM树，解析CSS，生成CSSOM树</li>
 <li>将DOM树和CSSOM树结合，生成渲染树(Render Tree)</li>
 <li>Layout(回流): 根据生成的渲染树，计算它们在设备视口(viewport)内的确切位置和大小，这个阶段是回流</li>
 <li>Painting(重绘): 根据渲染树以及回流得到的几何信息，得到节点的绝对像素</li>
-<li>Display:将像素发送给GPU，展示在页面上<br>四次挥手</li>
+<li>Display:将像素发送给GPU，展示在页面上</li>
 </ul>
-<h5 id="9-如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。"><a href="#9-如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。" class="headerlink" title="9. 如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。"></a>9. 如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。</h5><blockquote>
+<h5 id="9-如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。"><a href="#9-如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。" class="headerlink" title="9. 如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。"></a>9. 如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。</h5><h5 id="10-4次挥手"><a href="#10-4次挥手" class="headerlink" title="10 4次挥手"></a>10 4次挥手</h5><p><img src="./img/9.png" alt="Image text"></p>
+<ul>
+<li>第一次挥手：由浏览器发起，发送给服务器，我请求报文发送完了，你准备关闭吧；</li>
+<li>第二次挥手：由服务器发起，告诉浏览器，我接收完请求报文，我准备关闭，你也准备吧；</li>
+<li>第三次挥手：由服务器发起，告诉浏览器，我响应报文发送完毕，你准备关闭吧；</li>
+<li>第四次挥手：由浏览器发起，告诉服务器，我响应报文接收完毕，我准备关闭，你也准备吧；</li>
+</ul>
+<blockquote>
 <p>实际上在http请求方式不同、有无代理、有无负载均衡等不同场景下访问服务器的细节流程也会有一些差别，但这并不影响我们对整个访问环节的理解</p>
 </blockquote>
 <h3 id="DOM和JavaScript的关系"><a href="#DOM和JavaScript的关系" class="headerlink" title="DOM和JavaScript的关系"></a>DOM和JavaScript的关系</h3><p>文档对象模型（DOM）是一个独立于语言，用于操作XML和HTML文档的API,在web端，我们常用来操作HTML，但其实DOM也是可以操作XML文档的。</p>
@@ -830,7 +849,7 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
 <blockquote>
 <p>感谢这个时代，让我们可以站在巨人的肩膀上，窥探程序世界的宏伟壮观，我愿以一颗赤子心，踏遍程序世界的千山万水！愿每一个行走在程序世界的同仁，都活成心中想要的样子，加油。</p>
 </blockquote>
-<p>作者：小白师兄 周啸天<br>链接：<a href="https://www.imooc.com/article/45936" target="_blank" rel="noopener">https://www.imooc.com/article/45936</a><br>链接：<a href="https://www.yuque.com/books/share/b09738d1-9059-4fb5-9581-95df9e85e2c6/wmu1u9" target="_blank" rel="noopener">https://www.yuque.com/books/share/b09738d1-9059-4fb5-9581-95df9e85e2c6/wmu1u9</a></p>
+<p>引用文章：小白师兄 周啸天<br>链接：<a href="https://www.imooc.com/article/45936" target="_blank" rel="noopener">https://www.imooc.com/article/45936</a><br>链接：<a href="https://www.yuque.com/books/share/b09738d1-9059-4fb5-9581-95df9e85e2c6/wmu1u9" target="_blank" rel="noopener">https://www.yuque.com/books/share/b09738d1-9059-4fb5-9581-95df9e85e2c6/wmu1u9</a></p>
 
       
     </div>
@@ -1088,7 +1107,7 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#细说浏览器渲染的重排与重绘"><span class="nav-number">1.</span> <span class="nav-text">细说浏览器渲染的重排与重绘</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录结构"><span class="nav-number">1.0.1.</span> <span class="nav-text">目录结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL从输入到页面展示的过程"><span class="nav-number">1.1.</span> <span class="nav-text">URL从输入到页面展示的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-用户在浏览器的地址栏输入访问的URL地址。浏览器会先根据这个URL查看浏览器缓存-系统缓存-路由器缓存，若缓存中有，直接跳到第6步操作，若没有，则按照下面的步骤进行操作。"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1. 用户在浏览器的地址栏输入访问的URL地址。浏览器会先根据这个URL查看浏览器缓存-系统缓存-路由器缓存，若缓存中有，直接跳到第6步操作，若没有，则按照下面的步骤进行操作。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-浏览器根据输入的URL地址解析出主机名。"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2. 浏览器根据输入的URL地址解析出主机名。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-浏览器将主机名转换成服务器ip地址。浏览器先查找本地DNS缓存列表，看缓存里面是否存在这个ip-如果有则进入第4步，如果缓存中不存在这个ip地址，就再向浏览器默认的DNS服务器发送查询请求，同时缓存当前这个ip到DNS缓存列表中。更详细步骤参考https-www-cnblogs-com-xsilence-p-6035559-html"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">3. 浏览器将主机名转换成服务器ip地址。浏览器先查找本地DNS缓存列表，看缓存里面是否存在这个ip,如果有则进入第4步，如果缓存中不存在这个ip地址，就再向浏览器默认的DNS服务器发送查询请求，同时缓存当前这个ip到DNS缓存列表中。更详细步骤参考https://www.cnblogs.com/xsilence/p/6035559.html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-拿到ip地址后，浏览器再从URL中解析出端口号。"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">4. 拿到ip地址后，浏览器再从URL中解析出端口号。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。传送门：完整的tcp链接。"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">5. 拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。传送门：完整的tcp链接。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-浏览器向服务器发送一条HTTP请求报文。"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">6. 浏览器向服务器发送一条HTTP请求报文。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-服务器向浏览器返回一条HTTP响应报文。"><span class="nav-number">1.1.0.7.</span> <span class="nav-text">7. 服务器向浏览器返回一条HTTP响应报文。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-关闭连接-浏览器解析文档。"><span class="nav-number">1.1.0.8.</span> <span class="nav-text">8. 关闭连接 浏览器解析文档。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。"><span class="nav-number">1.1.0.9.</span> <span class="nav-text">9. 如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM和JavaScript的关系"><span class="nav-number">1.2.</span> <span class="nav-text">DOM和JavaScript的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么操作DOM会很慢"><span class="nav-number">1.3.</span> <span class="nav-text">为什么操作DOM会很慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器渲染HTML的步骤"><span class="nav-number">1.4.</span> <span class="nav-text">浏览器渲染HTML的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重排（Relayout-Reflow）"><span class="nav-number">1.5.</span> <span class="nav-text">重排（Relayout/Reflow）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在此，总结会引起重排的操作有："><span class="nav-number">1.5.1.</span> <span class="nav-text">在此，总结会引起重排的操作有：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重绘（Repainting）"><span class="nav-number">1.6.</span> <span class="nav-text">重绘（Repainting）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能优化"><span class="nav-number">1.7.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#其他优化方案"><span class="nav-number">1.7.1.</span> <span class="nav-text">其他优化方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后总结"><span class="nav-number">1.8.</span> <span class="nav-text">最后总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#细说浏览器渲染的重排与重绘"><span class="nav-number">1.</span> <span class="nav-text">细说浏览器渲染的重排与重绘</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录结构"><span class="nav-number">1.0.1.</span> <span class="nav-text">目录结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL从输入到页面展示的过程"><span class="nav-number">1.1.</span> <span class="nav-text">URL从输入到页面展示的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-用户在浏览器的地址栏输入访问的URL地址。浏览器会先根据这个URL查看浏览器缓存-系统缓存-路由器缓存，若缓存中有，直接跳到第6步操作，若没有，则按照下面的步骤进行操作。"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1. 用户在浏览器的地址栏输入访问的URL地址。浏览器会先根据这个URL查看浏览器缓存-系统缓存-路由器缓存，若缓存中有，直接跳到第6步操作，若没有，则按照下面的步骤进行操作。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-浏览器根据输入的URL地址解析出主机名。"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2. 浏览器根据输入的URL地址解析出主机名。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-浏览器将主机名转换成服务器ip地址。浏览器先查找本地DNS缓存列表，看缓存里面是否存在这个ip-如果有则进入第4步，如果缓存中不存在这个ip地址，就再向浏览器默认的DNS服务器发送查询请求，同时缓存当前这个ip到DNS缓存列表中。更详细步骤参考https-www-cnblogs-com-xsilence-p-6035559-html"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">3. 浏览器将主机名转换成服务器ip地址。浏览器先查找本地DNS缓存列表，看缓存里面是否存在这个ip,如果有则进入第4步，如果缓存中不存在这个ip地址，就再向浏览器默认的DNS服务器发送查询请求，同时缓存当前这个ip到DNS缓存列表中。更详细步骤参考https://www.cnblogs.com/xsilence/p/6035559.html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-拿到ip地址后，浏览器再从URL中解析出端口号。"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">4. 拿到ip地址后，浏览器再从URL中解析出端口号。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">5. 拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-浏览器向服务器发送一条HTTP请求报文。"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">6. 浏览器向服务器发送一条HTTP请求报文。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-服务器向浏览器返回一条HTTP响应报文。"><span class="nav-number">1.1.0.7.</span> <span class="nav-text">7. 服务器向浏览器返回一条HTTP响应报文。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-关闭连接-浏览器解析文档。"><span class="nav-number">1.1.0.8.</span> <span class="nav-text">8. 关闭连接 浏览器解析文档。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。"><span class="nav-number">1.1.0.9.</span> <span class="nav-text">9. 如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-4次挥手"><span class="nav-number">1.1.0.10.</span> <span class="nav-text">10 4次挥手</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM和JavaScript的关系"><span class="nav-number">1.2.</span> <span class="nav-text">DOM和JavaScript的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么操作DOM会很慢"><span class="nav-number">1.3.</span> <span class="nav-text">为什么操作DOM会很慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器渲染HTML的步骤"><span class="nav-number">1.4.</span> <span class="nav-text">浏览器渲染HTML的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重排（Relayout-Reflow）"><span class="nav-number">1.5.</span> <span class="nav-text">重排（Relayout/Reflow）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在此，总结会引起重排的操作有："><span class="nav-number">1.5.1.</span> <span class="nav-text">在此，总结会引起重排的操作有：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重绘（Repainting）"><span class="nav-number">1.6.</span> <span class="nav-text">重绘（Repainting）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能优化"><span class="nav-number">1.7.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#其他优化方案"><span class="nav-number">1.7.1.</span> <span class="nav-text">其他优化方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后总结"><span class="nav-number">1.8.</span> <span class="nav-text">最后总结</span></a></li></div>
             
 
           </div>
