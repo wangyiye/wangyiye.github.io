@@ -497,7 +497,7 @@ window.onmouseout = function () {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4.9k
+                  5.8k
                 </span>
               
 
@@ -513,7 +513,7 @@ window.onmouseout = function () {
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  18
+                  21
                 </span>
               
             </div>
@@ -671,18 +671,18 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
 <li><p>500  Internal Server Error未知服务器错误</p>
 </li>
 <li><p>503 Service Unavailable 服务器超负荷</p>
-</li>
+<h5 id="8-页面渲染"><a href="#8-页面渲染" class="headerlink" title="8. 页面渲染"></a>8. 页面渲染</h5></li>
 </ul>
 </li>
 </ul>
-<h5 id="8-关闭连接-浏览器解析文档。"><a href="#8-关闭连接-浏览器解析文档。" class="headerlink" title="8. 关闭连接 浏览器解析文档。"></a>8. 关闭连接 浏览器解析文档。</h5><p><img src="/2019/09/09/浏览器渲染的重排与重绘以及性能优化/5.png" alt="Image text"></p>
+<h5 id="9-关闭连接"><a href="#9-关闭连接" class="headerlink" title="9. 关闭连接"></a>9. 关闭连接</h5><p><img src="/2019/09/09/浏览器渲染的重排与重绘以及性能优化/5.png" alt="Image text"></p>
 <ul>
 <li>第一次挥手：由浏览器发起，发送给服务器，我请求报文发送完了，你准备关闭吧；</li>
 <li>第二次挥手：由服务器发起，告诉浏览器，我接收完请求报文，我准备关闭，你也准备吧；</li>
 <li>第三次挥手：由服务器发起，告诉浏览器，我响应报文发送完毕，你准备关闭吧；</li>
 <li>第四次挥手：由浏览器发起，告诉服务器，我响应报文接收完毕，我准备关闭，你也准备吧；</li>
 </ul>
-<h5 id="9-如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。"><a href="#9-如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。" class="headerlink" title="9. 如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。"></a>9. 如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。</h5><h3 id="DOM和JavaScript的关系"><a href="#DOM和JavaScript的关系" class="headerlink" title="DOM和JavaScript的关系"></a>DOM和JavaScript的关系</h3><p>文档对象模型（DOM）是一个独立于语言，用于操作XML和HTML文档的API,在web端，我们常用来操作HTML，但其实DOM也是可以操作XML文档的。</p>
+<h5 id="9-如果文档中还有资源则重复6、7、8动作，直至资源全部加载完毕。-优化（A：Connection-Keep-Alive-保持TCP不中断）"><a href="#9-如果文档中还有资源则重复6、7、8动作，直至资源全部加载完毕。-优化（A：Connection-Keep-Alive-保持TCP不中断）" class="headerlink" title="9. 如果文档中还有资源则重复6、7、8动作，直至资源全部加载完毕。 优化（A：Connection: Keep-Alive 保持TCP不中断）"></a>9. 如果文档中还有资源则重复6、7、8动作，直至资源全部加载完毕。 优化（A：Connection: Keep-Alive 保持TCP不中断）</h5><h3 id="DOM和JavaScript的关系"><a href="#DOM和JavaScript的关系" class="headerlink" title="DOM和JavaScript的关系"></a>DOM和JavaScript的关系</h3><p>文档对象模型（DOM）是一个独立于语言，用于操作XML和HTML文档的API,在web端，我们常用来操作HTML，但其实DOM也是可以操作XML文档的。</p>
 <p>我们现在知道，DOM是一个独立于语言的API，换句话说，DOM是一个与语言无关的API，别的语言也可以实现操作DOM的具体api，但是它在浏览器中是用JavaScript来实现的，也因此，DOM是现在JavaScript编码中很重要的一部分，因为JavaScript很多时候都在操作底层文档。</p>
 <h3 id="为什么操作DOM会很慢"><a href="#为什么操作DOM会很慢" class="headerlink" title="为什么操作DOM会很慢"></a>为什么操作DOM会很慢</h3><p>虽然DOM是由JavaScript实现的，但是在浏览器中都是把DOM和JavaScript分开来实现的，比如IE中，JavaScript的实现名为JScript，放在jscript.dll文件中，而DOM则放在另一个叫做mshtml.dll的库中。在Safari中，DOM和渲染是使用Webkit中的WebCore实现，而JavaScript是由独立的JavaScriptCore引擎实现，同样在Chrome中，同样是使用WebCore来实现渲染，而JavaScript引擎则是他们自己研发的V8引擎。</p>
 <p>由于DOM和JavaScript是被分开独立实现的，因此，每一次在通过js操作DOM的时候，就需要先去连接js和DOM，我们可以这样理解：把DOM和JavaScript比作两个岛，他们之间通过一个收费的桥连接着，每一次访问DOM的时候，就需要经过这座桥，并且给“过路费”，访问的次数越多，路费就会越高，并且访问到DOM后，操作具体的DOM还需要给“操作费”，由于浏览器访问DOM的操作很多，因此，“路费”和“操作费”自然会增加，这就是为什么操作DOM会很慢的原因</p>
@@ -790,61 +790,68 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
 </ul>
 </li>
 </ul>
-<h4 id="其他优化方案"><a href="#其他优化方案" class="headerlink" title="其他优化方案"></a>其他优化方案</h4><ol>
-<li>减少HTTP请求次数和请求的大小</li>
-</ol>
-<ul>
-<li>文件合并压缩</li>
-<li>雪碧图 css sprite</li>
-<li>图片base64</li>
-<li>尽量使用字体图标</li>
-<li>图片懒加载</li>
-<li>音视频取消预加载</li>
-<li>在客户端和服务器端进行信息交互的时候，对于多项数据我们尽可能基于JSON格式来进行传送（JSON格式的数据处理方便，资源偏小）</li>
-<li>开启服务器端的gzip压缩<br>……</li>
+<h3 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h3><h4 id="1-减少HTTP的请求次数和传输报文的大小"><a href="#1-减少HTTP的请求次数和传输报文的大小" class="headerlink" title="1. 减少HTTP的请求次数和传输报文的大小"></a>1. 减少HTTP的请求次数和传输报文的大小</h4><ul>
+<li>CSS SPRITE（雪碧图、图片精灵）技术</li>
+<li>使用字体图标（ICON FONT）或者SVG等矢量图<ul>
+<li>减少HTTP请求次数或者减少请求内容的大小</li>
+<li>渲染更快：因为他们是基于代码渲染的，而对于位图（png/jpg/gif）是需要先把图片编码再渲染</li>
+<li>不容易失真变形</li>
+<li>也可以使用webp格式图片，这种格式要小一些（但是需要服务器端支持这种格式的请求处理）</li>
 </ul>
-<ol start="2">
-<li>建立缓存机制</li>
-</ol>
-<ul>
-<li>DNS缓存</li>
-<li>数据缓存（例如：本地存储）</li>
-<li>强缓存 和 协商缓存（304）</li>
-<li>离线存储</li>
-<li>做CDN加速<br>……</li>
+</li>
+<li>图片懒加载（延迟加载）技术<ul>
+<li>第一次加载页面的时候不去请求真实的图片，提高第一次渲染页面的速度</li>
+<li>当页面加载完，把出现在用户视野区域中的图片做真实加载，没有出现的先不加载（节约流量，也能减少对服务器的请求压力）</li>
+<li>对于数据我们也尽可能分批加载（不要一次请求过多的数据，例如分页技术）</li>
 </ul>
-<ol start="3">
-<li>代码上的优化</li>
-</ol>
-<ul>
-<li>减少DOM的重绘和回流</li>
-<li>在JS中尽量减少闭包的使用</li>
-<li>在JS中避免“嵌套循环”和“死循环”</li>
+</li>
+<li>音视频文件取消预加载（preload=’none’），这样可以增加第一次渲染页面的速度，当需要播放的时候再加载</li>
+<li>客户端和服务器端的数据传输尽可能基于JSON格式完成，XML格式比JSON格式要大一些（还可以基于二进制编码或者文件流格式，这种格式比文件传输好很多）</li>
+<li>把页面中的CSS/JS/图片等文件进行合并压缩<ul>
+<li>合并：争取CSS和JS都只导入一个（webpack可以实现自动合并压缩）</li>
+<li>压缩：基于webpack可以压缩、对于图片自己找工具先压缩、还可以使用服务器的GZIP压缩</li>
+</ul>
+</li>
+<li>图片地图：对于多次调取使用的图片（尤其是背景图），我们尽可能把它提取成为公共的样式，而不是每一次重新设置background</li>
+<li>图片BASE64（用BASE64码代表图片，减少HTTP请求，增加浏览器渲染的速度，所以真实项目中，尤其是移动端，如果图片加载缓慢，可能BASE64一下就好了；但是，BASE64会导致文件中的代码超级恶心，不利于维护和开发，所以少使用；webpack中可以配置图片的BASE64；）</li>
+</ul>
+<h4 id="2-设置各种缓存、预处理和长连接机制"><a href="#2-设置各种缓存、预处理和长连接机制" class="headerlink" title="2. 设置各种缓存、预处理和长连接机制"></a>2. 设置各种缓存、预处理和长连接机制</h4><ul>
+<li>把不经常更改的静态资源做缓存处理（一般做的是304或者ETAG等协商缓存）</li>
+<li>建立 Cache-Control 和 Expires HTTP的强缓存</li>
+<li>DNS缓存或者预处理（DNS PREFETCH），减少DNS的查找</li>
+<li>设置本地的离线存储（manifest）或者把一些不经常更改的数据做本地存储（webstorage、indexdb）等</li>
+<li>有钱就做CDN（地域分布式服务器），还有一个财大气粗的方式：加服务器</li>
+<li>建立 Connection:keep-alive TCP长连接</li>
+<li>使用HTTP2版本协议（现在用的一般都是HTTP1.1）<ul>
+<li>可以多条TCP通道共存 =&gt;管道化链接</li>
+<li>思考题：HTTP VS HTTPS</li>
+<li>思考题：HTTP1 VS HTTP2</li>
+</ul>
+</li>
+<li>一个项目分为不同的域（不同的服务器），例如：资源WEB服务器、数据服务器、图片服务器、视频服务器等，这样合理利用服务器资源，但是导致过多的DNS解析</li>
+</ul>
+<h4 id="3-代码方面的性能优化"><a href="#3-代码方面的性能优化" class="headerlink" title="3. 代码方面的性能优化"></a>3. 代码方面的性能优化</h4><ul>
+<li>减少对闭包的使用（因为过多使用闭包会产生很多不销毁的内存，处理不好的话，会导致内存溢出“栈溢出”），减少闭包的嵌套（减少作用域链的查找层级）</li>
+<li>对于动画来说：能用CSS解决的不用JS（能够用transform处理的，不用传统的css样式，因为transform开启硬件加速，不会引发回流，再或者使用定位的元素也会好很多，因为定位的元素脱离文档流，不会对其它元素的位置造成影响），能用requestAnimationFrame解决的不用定时器<ul>
+<li>requestAnimationFrame还有一个好处，当页面处于休眠无访问状态，动画会自己暂停，直到恢复访问才开始，而定时器是不论什么状态，只要页面不管，就一直处理</li>
+</ul>
+</li>
+<li>避免使用iframe（因为iframe会嵌入其它页面，这样父页面渲染的时候，还要同时把子页面也渲染了，渲染进度会变慢）</li>
+<li>减少直接对DOM的操作（原因是减少DOM的回流和重绘…），当代项目基本上都是基于mvvm/mvc数据驱动视图渲染的，对DOM的操作框架本身完成，性能要好很多</li>
+<li>低耦合高内聚（基于封装的方式：方法封装、插件、组件、框架、类库等封装，减少页面中的冗余代码，提高代码使用率）</li>
 <li>尽可能使用事件委托</li>
-<li>尽量减少CSS表达式的使用(expression)</li>
-<li>CSS选择器解析规则是从右向左解析</li>
-<li>页面中的数据获取采用异步编程和延迟分批加载</li>
-<li>尽可能实现JS的封装（低耦合高内聚），减少页面中的冗余代码</li>
-<li>尽量减少对于filter滤镜属性的使用</li>
-<li>在CSS导入的时候尽量减少使用@import导入式</li>
-<li>使用window.requestAnimationFrame（JS中的帧动画）代替传统的定时器动画</li>
-<li>减少递归的使用，避免死递归，避免由于递归导致的栈内存嵌套</li>
-<li>基于SCRIPT调取JS的时候，可已使用 defer或者async 来异步加载</li>
-<li>避免使用with语句<br>……</li>
+<li>避免出现死循环或者嵌套循环（嵌套循环会成倍增加循环的次数）</li>
+<li>项目中尽可能使用异步编程来模拟出多线程的效果，避免主线程阻塞（异步操作基于PROMISE设计模式来管理）</li>
+<li>JS中不要使用with</li>
+<li>避免使用CSS表达式</li>
+<li>函数的防抖和节流</li>
+<li>减少使用eval（主要原因是防止压缩代码的时候，由于符号书写不合规，导致代码混乱）</li>
+<li>减少filter滤镜的使用</li>
+<li>尽可能减少选择器的层级（选择器是从右向左解析） .box a{} 和 a{}</li>
+<li>尽可能减少TABLE布局</li>
+<li>手动回收堆栈内存（赋值为null）</li>
 </ul>
-<h3 id="最后总结"><a href="#最后总结" class="headerlink" title="最后总结"></a>最后总结</h3><p>本篇文章主要抓取url从输入到最后渲染成界面这一流程中的浏览器解析渲染HTML这一步骤来探讨前端优化的思路和原因，核心思想基于重排和重绘的关系来展开讨论，主题大致有如下几点：</p>
-<ul>
-<li><p>url从输入到最后渲染的大致环节。</p>
-</li>
-<li><p>重排一定会重绘，重绘不一定有重排。</p>
-</li>
-<li><p>Js操作DOM是一个高消费过程。</p>
-</li>
-<li><p>会引起重排/重绘的属性和方法列举</p>
-</li>
-<li><p>优化思路（减少dom操作、替换高性能api、暂存引用、减少重排、开启硬件加速等）。</p>
-</li>
-</ul>
+<p>JS前端代码优化的108条建议<br>雅虎CSS代码优化的36条建议 <a href="https://blog.csdn.net/ime33/article/details/77862047" target="_blank" rel="noopener">https://blog.csdn.net/ime33/article/details/77862047</a></p>
 <blockquote>
 <p>感谢这个时代，让我们可以站在巨人的肩膀上，窥探程序世界的宏伟壮观，我愿以一颗赤子心，踏遍程序世界的千山万水！愿每一个行走在程序世界的同仁，都活成心中想要的样子，加油。</p>
 </blockquote>
@@ -1106,7 +1113,7 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#细说浏览器渲染的重排与重绘"><span class="nav-number">1.</span> <span class="nav-text">细说浏览器渲染的重排与重绘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">1.1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL从输入到页面展示的过程"><span class="nav-number">1.2.</span> <span class="nav-text">URL从输入到页面展示的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-用户在浏览器的地址栏输入访问的URL地址。浏览器会先根据这个URL查看浏览器缓存-系统缓存-路由器缓存，若缓存中有，直接跳到第6步操作，若没有，则按照下面的步骤进行操作。"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1. 用户在浏览器的地址栏输入访问的URL地址。浏览器会先根据这个URL查看浏览器缓存-系统缓存-路由器缓存，若缓存中有，直接跳到第6步操作，若没有，则按照下面的步骤进行操作。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-浏览器根据输入的URL地址解析出主机名。"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2. 浏览器根据输入的URL地址解析出主机名。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-浏览器将主机名转换成服务器ip地址。浏览器先查找本地DNS缓存列表，看缓存里面是否存在这个ip-如果有则进入第4步，如果缓存中不存在这个ip地址，就再向浏览器默认的DNS服务器发送查询请求，同时缓存当前这个ip到DNS缓存列表中。更详细步骤参考https-www-cnblogs-com-xsilence-p-6035559-html"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">3. 浏览器将主机名转换成服务器ip地址。浏览器先查找本地DNS缓存列表，看缓存里面是否存在这个ip,如果有则进入第4步，如果缓存中不存在这个ip地址，就再向浏览器默认的DNS服务器发送查询请求，同时缓存当前这个ip到DNS缓存列表中。更详细步骤参考https://www.cnblogs.com/xsilence/p/6035559.html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-拿到ip地址后，浏览器再从URL中解析出端口号。"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">4. 拿到ip地址后，浏览器再从URL中解析出端口号。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">5. 拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-浏览器向服务器发送一条HTTP请求报文。"><span class="nav-number">1.2.0.6.</span> <span class="nav-text">6. 浏览器向服务器发送一条HTTP请求报文。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-服务器向浏览器返回一条HTTP响应报文。"><span class="nav-number">1.2.0.7.</span> <span class="nav-text">7. 服务器向浏览器返回一条HTTP响应报文。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-关闭连接-浏览器解析文档。"><span class="nav-number">1.2.0.8.</span> <span class="nav-text">8. 关闭连接 浏览器解析文档。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。"><span class="nav-number">1.2.0.9.</span> <span class="nav-text">9. 如果文档中有资源则重复6、7、8动作，直至资源全部加载完毕。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM和JavaScript的关系"><span class="nav-number">1.3.</span> <span class="nav-text">DOM和JavaScript的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么操作DOM会很慢"><span class="nav-number">1.4.</span> <span class="nav-text">为什么操作DOM会很慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器渲染HTML的步骤"><span class="nav-number">1.5.</span> <span class="nav-text">浏览器渲染HTML的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重排（Relayout-Reflow）"><span class="nav-number">1.6.</span> <span class="nav-text">重排（Relayout/Reflow）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在此，总结会引起重排的操作有："><span class="nav-number">1.6.1.</span> <span class="nav-text">在此，总结会引起重排的操作有：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重绘（Repainting）"><span class="nav-number">1.7.</span> <span class="nav-text">重绘（Repainting）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能优化"><span class="nav-number">1.8.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#其他优化方案"><span class="nav-number">1.8.1.</span> <span class="nav-text">其他优化方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后总结"><span class="nav-number">1.9.</span> <span class="nav-text">最后总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#细说浏览器渲染的重排与重绘"><span class="nav-number">1.</span> <span class="nav-text">细说浏览器渲染的重排与重绘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">1.1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL从输入到页面展示的过程"><span class="nav-number">1.2.</span> <span class="nav-text">URL从输入到页面展示的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-用户在浏览器的地址栏输入访问的URL地址。浏览器会先根据这个URL查看浏览器缓存-系统缓存-路由器缓存，若缓存中有，直接跳到第6步操作，若没有，则按照下面的步骤进行操作。"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1. 用户在浏览器的地址栏输入访问的URL地址。浏览器会先根据这个URL查看浏览器缓存-系统缓存-路由器缓存，若缓存中有，直接跳到第6步操作，若没有，则按照下面的步骤进行操作。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-浏览器根据输入的URL地址解析出主机名。"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2. 浏览器根据输入的URL地址解析出主机名。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-浏览器将主机名转换成服务器ip地址。浏览器先查找本地DNS缓存列表，看缓存里面是否存在这个ip-如果有则进入第4步，如果缓存中不存在这个ip地址，就再向浏览器默认的DNS服务器发送查询请求，同时缓存当前这个ip到DNS缓存列表中。更详细步骤参考https-www-cnblogs-com-xsilence-p-6035559-html"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">3. 浏览器将主机名转换成服务器ip地址。浏览器先查找本地DNS缓存列表，看缓存里面是否存在这个ip,如果有则进入第4步，如果缓存中不存在这个ip地址，就再向浏览器默认的DNS服务器发送查询请求，同时缓存当前这个ip到DNS缓存列表中。更详细步骤参考https://www.cnblogs.com/xsilence/p/6035559.html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-拿到ip地址后，浏览器再从URL中解析出端口号。"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">4. 拿到ip地址后，浏览器再从URL中解析出端口号。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">5. 拿到ip和端口后，浏览器会建立一条与目标Web服务器的TCP连接，也就是传说中的三次握手。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-浏览器向服务器发送一条HTTP请求报文。"><span class="nav-number">1.2.0.6.</span> <span class="nav-text">6. 浏览器向服务器发送一条HTTP请求报文。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-服务器向浏览器返回一条HTTP响应报文。"><span class="nav-number">1.2.0.7.</span> <span class="nav-text">7. 服务器向浏览器返回一条HTTP响应报文。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-页面渲染"><span class="nav-number">1.2.0.8.</span> <span class="nav-text">8. 页面渲染</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-关闭连接"><span class="nav-number">1.2.0.9.</span> <span class="nav-text">9. 关闭连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-如果文档中还有资源则重复6、7、8动作，直至资源全部加载完毕。-优化（A：Connection-Keep-Alive-保持TCP不中断）"><span class="nav-number">1.2.0.10.</span> <span class="nav-text">9. 如果文档中还有资源则重复6、7、8动作，直至资源全部加载完毕。 优化（A：Connection: Keep-Alive 保持TCP不中断）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM和JavaScript的关系"><span class="nav-number">1.3.</span> <span class="nav-text">DOM和JavaScript的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么操作DOM会很慢"><span class="nav-number">1.4.</span> <span class="nav-text">为什么操作DOM会很慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器渲染HTML的步骤"><span class="nav-number">1.5.</span> <span class="nav-text">浏览器渲染HTML的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重排（Relayout-Reflow）"><span class="nav-number">1.6.</span> <span class="nav-text">重排（Relayout/Reflow）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在此，总结会引起重排的操作有："><span class="nav-number">1.6.1.</span> <span class="nav-text">在此，总结会引起重排的操作有：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重绘（Repainting）"><span class="nav-number">1.7.</span> <span class="nav-text">重绘（Repainting）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能优化"><span class="nav-number">1.8.</span> <span class="nav-text">性能优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端性能优化"><span class="nav-number">1.9.</span> <span class="nav-text">前端性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-减少HTTP的请求次数和传输报文的大小"><span class="nav-number">1.9.1.</span> <span class="nav-text">1. 减少HTTP的请求次数和传输报文的大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-设置各种缓存、预处理和长连接机制"><span class="nav-number">1.9.2.</span> <span class="nav-text">2. 设置各种缓存、预处理和长连接机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-代码方面的性能优化"><span class="nav-number">1.9.3.</span> <span class="nav-text">3. 代码方面的性能优化</span></a></li></ol></li></ol></div>
             
 
           </div>
