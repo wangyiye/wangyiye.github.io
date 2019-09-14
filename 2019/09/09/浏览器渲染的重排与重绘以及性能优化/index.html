@@ -816,19 +816,20 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
 <li>图片BASE64（用BASE64码代表图片，减少HTTP请求，增加浏览器渲染的速度，所以真实项目中，尤其是移动端，如果图片加载缓慢，可能BASE64一下就好了；但是，BASE64会导致文件中的代码超级恶心，不利于维护和开发，所以少使用；webpack中可以配置图片的BASE64；）</li>
 </ul>
 <h4 id="2-设置各种缓存、预处理和长连接机制"><a href="#2-设置各种缓存、预处理和长连接机制" class="headerlink" title="2. 设置各种缓存、预处理和长连接机制"></a>2. 设置各种缓存、预处理和长连接机制</h4><ul>
-<li>把不经常更改的静态资源做缓存处理（一般做的是304或者ETAG等协商缓存）</li>
-<li>建立 Cache-Control 和 Expires HTTP的强缓存</li>
-<li>DNS缓存或者预处理（DNS PREFETCH），减少DNS的查找</li>
-<li>设置本地的离线存储（manifest）或者把一些不经常更改的数据做本地存储（webstorage、indexdb）等</li>
-<li>有钱就做CDN（地域分布式服务器），还有一个财大气粗的方式：加服务器</li>
-<li>建立 Connection:keep-alive TCP长连接</li>
-<li>使用HTTP2版本协议（现在用的一般都是HTTP1.1）<ul>
-<li>可以多条TCP通道共存 =&gt;管道化链接</li>
-<li>思考题：HTTP VS HTTPS</li>
-<li>思考题：HTTP1 VS HTTP2</li>
-</ul>
+<li><p>把不经常更改的静态资源做缓存处理（一般做的是304或者ETAG等协商缓存）</p>
 </li>
-<li>一个项目分为不同的域（不同的服务器），例如：资源WEB服务器、数据服务器、图片服务器、视频服务器等，这样合理利用服务器资源，但是导致过多的DNS解析</li>
+<li><p>建立 Cache-Control 和 Expires HTTP的强缓存</p>
+</li>
+<li><p>DNS缓存或者预处理（DNS PREFETCH），减少DNS的查找</p>
+</li>
+<li><p>设置本地的离线存储（manifest）或者把一些不经常更改的数据做本地存储（webstorage、indexdb）等</p>
+</li>
+<li><p>建立 Connection:keep-alive TCP长连接</p>
+</li>
+<li><p>使用HTTP2版本协议（现在用的一般都是HTTP1.1）<br>  HTTP/2.0 相比1.0有哪些重大改进？ <a href="https://www.zhihu.com/question/34074946" target="_blank" rel="noopener">https://www.zhihu.com/question/34074946</a></p>
+</li>
+<li><p>一个项目分为不同的域（不同的服务器），例如：资源WEB服务器、数据服务器、图片服务器、视频服务器等，这样合理利用服务器资源，但是导致过多的DNS解析</p>
+</li>
 </ul>
 <h4 id="3-代码方面的性能优化"><a href="#3-代码方面的性能优化" class="headerlink" title="3. 代码方面的性能优化"></a>3. 代码方面的性能优化</h4><ul>
 <li>减少对闭包的使用（因为过多使用闭包会产生很多不销毁的内存，处理不好的话，会导致内存溢出“栈溢出”），减少闭包的嵌套（减少作用域链的查找层级）</li>
@@ -849,7 +850,8 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
 <li>减少filter滤镜的使用</li>
 <li>尽可能减少选择器的层级（选择器是从右向左解析） .box a{} 和 a{}</li>
 <li>尽可能减少TABLE布局</li>
-<li>手动回收堆栈内存（赋值为null）</li>
+<li>手动回收堆栈内存（赋值为null）<br>其他</li>
+<li>CDN（地域分布式服务器），加服务器</li>
 </ul>
 <p>JS前端代码优化的108条建议<br>雅虎CSS代码优化的36条建议 <a href="https://blog.csdn.net/ime33/article/details/77862047" target="_blank" rel="noopener">https://blog.csdn.net/ime33/article/details/77862047</a></p>
 <blockquote>
@@ -1035,7 +1037,7 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

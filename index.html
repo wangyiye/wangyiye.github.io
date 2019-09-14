@@ -386,6 +386,199 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wangyiye.github.io/2019/09/14/HTTP1-0-HTTP-1-1-HTTP-2-0主要区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yiYe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yiYe's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/14/HTTP1-0-HTTP-1-1-HTTP-2-0主要区别/" itemprop="url">HTTP1.0 HTTP 1.1 HTTP 2.0主要区别 （转载）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T08:23:44+08:00">
+                2019-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/09/14/HTTP1-0-HTTP-1-1-HTTP-2-0主要区别/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::https://wangyiye.github.io/2019/09/14/HTTP1-0-HTTP-1-1-HTTP-2-0主要区别/" class="cy_cmt_count" data-xid="2019/09/14/HTTP1-0-HTTP-1-1-HTTP-2-0主要区别/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2019/09/14/HTTP1-0-HTTP-1-1-HTTP-2-0主要区别/" class="leancloud_visitors" data-flag-title="HTTP1.0 HTTP 1.1 HTTP 2.0主要区别 （转载）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  840
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+
+      
+      
+
+      
+        
+          
+            <h3 id="HTTP1-0-HTTP-1-1主要区别"><a href="#HTTP1-0-HTTP-1-1主要区别" class="headerlink" title="HTTP1.0 HTTP 1.1主要区别"></a>HTTP1.0 HTTP 1.1主要区别</h3><h4 id="长连接"><a href="#长连接" class="headerlink" title="长连接"></a>长连接</h4><p>HTTP 1.0需要使用keep-alive参数来告知服务器端要建立一个长连接，而HTTP1.1默认支持长连接。</p>
+<p>HTTP是基于TCP/IP协议的，创建一个TCP连接是需要经过三次握手的,有一定的开销，如果每次通讯都要重新建立连接的话，对性能有影响。因此最好能维持一个长连接，可以用个长连接来发多个请求。</p>
+<h4 id="节约带宽"><a href="#节约带宽" class="headerlink" title="节约带宽"></a>节约带宽</h4><p>HTTP 1.1支持只发送header信息(不带任何body信息)，如果服务器认为客户端有权限请求服务器，则返回100，否则返回401。客户端如果接受到100，才开始把请求body发送到服务器。</p>
+<p>这样当服务器返回401的时候，客户端就可以不用发送请求body了，节约了带宽。</p>
+<p>另外HTTP还支持传送内容的一部分。这样当客户端已经有一部分的资源后，只需要跟服务器请求另外的部分资源即可。这是支持文件断点续传的基础。</p>
+<h4 id="HOST域"><a href="#HOST域" class="headerlink" title="HOST域"></a>HOST域</h4><p>现在可以web server例如tomat，设置虚拟站点是非常常见的，也即是说，web server上的多个虚拟站点可以共享同一个ip和端口。</p>
+<p>HTTP1.0是没有host域的，HTTP1.1才支持这个参数。</p>
+<h3 id="HTTP1-1-HTTP-2-0主要区别"><a href="#HTTP1-1-HTTP-2-0主要区别" class="headerlink" title="HTTP1.1 HTTP 2.0主要区别"></a>HTTP1.1 HTTP 2.0主要区别</h3><h4 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h4><p>HTTP2.0使用了多路复用的技术，做到同一个连接并发处理多个请求，而且并发请求的数量比HTTP1.1大了好几个数量级。</p>
+<p>当然HTTP1.1也可以多建立几个TCP连接，来支持处理更多并发的请求，但是创建TCP连接本身也是有开销的。</p>
+<p>TCP连接有一个预热和保护的过程，先检查数据是否传送成功，一旦成功过，则慢慢加大传输速度。因此对应瞬时并发的连接，服务器的响应就会变慢。所以最好能使用一个建立好的连接，并且这个连接可以支持瞬时并发的请求。</p>
+<p>关于多路复用，可以参看学习NIO 。</p>
+<h4 id="数据压缩"><a href="#数据压缩" class="headerlink" title="数据压缩"></a>数据压缩</h4><p>HTTP1.1不支持header数据的压缩，HTTP2.0使用HPACK算法对header的数据进行压缩，这样数据体积小了，在网络上传输就会更快。</p>
+<h4 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h4><p>意思是说，当我们对支持HTTP2.0的web server请求数据的时候，服务器会顺便把一些客户端需要的资源一起推送到客户端，免得客户端再次创建连接发送请求到服务器端获取。这种方式非常合适加载静态资源。</p>
+<p>服务器端推送的这些资源其实存在客户端的某处地方，客户端直接从本地加载这些资源就可以了，不用走网络，速度自然是快很多的。</p>
+<p>详细内容：</p>
+<p>1、HTTP/2.0 相比1.0有哪些重大改进？ <a href="https://www.zhihu.com/question/34074946" target="_blank" rel="noopener">https://www.zhihu.com/question/34074946</a><br>2、深入研究：HTTP2 的真正性能到底如何  <a href="https://segmentfault.com/a/1190000007219256" target="_blank" rel="noopener">https://segmentfault.com/a/1190000007219256</a><br>————————————————<br>版权声明：本文为CSDN博主「Sam哥哥」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/linsongbin1/article/details/54980801" target="_blank" rel="noopener">https://blog.csdn.net/linsongbin1/article/details/54980801</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+
+
+    
+    <div>
+    
+
+    
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </div></article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wangyiye.github.io/2019/09/10/ES2019/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1052,19 +1245,20 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
 <li>图片BASE64（用BASE64码代表图片，减少HTTP请求，增加浏览器渲染的速度，所以真实项目中，尤其是移动端，如果图片加载缓慢，可能BASE64一下就好了；但是，BASE64会导致文件中的代码超级恶心，不利于维护和开发，所以少使用；webpack中可以配置图片的BASE64；）</li>
 </ul>
 <h4 id="2-设置各种缓存、预处理和长连接机制"><a href="#2-设置各种缓存、预处理和长连接机制" class="headerlink" title="2. 设置各种缓存、预处理和长连接机制"></a>2. 设置各种缓存、预处理和长连接机制</h4><ul>
-<li>把不经常更改的静态资源做缓存处理（一般做的是304或者ETAG等协商缓存）</li>
-<li>建立 Cache-Control 和 Expires HTTP的强缓存</li>
-<li>DNS缓存或者预处理（DNS PREFETCH），减少DNS的查找</li>
-<li>设置本地的离线存储（manifest）或者把一些不经常更改的数据做本地存储（webstorage、indexdb）等</li>
-<li>有钱就做CDN（地域分布式服务器），还有一个财大气粗的方式：加服务器</li>
-<li>建立 Connection:keep-alive TCP长连接</li>
-<li>使用HTTP2版本协议（现在用的一般都是HTTP1.1）<ul>
-<li>可以多条TCP通道共存 =&gt;管道化链接</li>
-<li>思考题：HTTP VS HTTPS</li>
-<li>思考题：HTTP1 VS HTTP2</li>
-</ul>
+<li><p>把不经常更改的静态资源做缓存处理（一般做的是304或者ETAG等协商缓存）</p>
 </li>
-<li>一个项目分为不同的域（不同的服务器），例如：资源WEB服务器、数据服务器、图片服务器、视频服务器等，这样合理利用服务器资源，但是导致过多的DNS解析</li>
+<li><p>建立 Cache-Control 和 Expires HTTP的强缓存</p>
+</li>
+<li><p>DNS缓存或者预处理（DNS PREFETCH），减少DNS的查找</p>
+</li>
+<li><p>设置本地的离线存储（manifest）或者把一些不经常更改的数据做本地存储（webstorage、indexdb）等</p>
+</li>
+<li><p>建立 Connection:keep-alive TCP长连接</p>
+</li>
+<li><p>使用HTTP2版本协议（现在用的一般都是HTTP1.1）<br>  HTTP/2.0 相比1.0有哪些重大改进？ <a href="https://www.zhihu.com/question/34074946" target="_blank" rel="noopener">https://www.zhihu.com/question/34074946</a></p>
+</li>
+<li><p>一个项目分为不同的域（不同的服务器），例如：资源WEB服务器、数据服务器、图片服务器、视频服务器等，这样合理利用服务器资源，但是导致过多的DNS解析</p>
+</li>
 </ul>
 <h4 id="3-代码方面的性能优化"><a href="#3-代码方面的性能优化" class="headerlink" title="3. 代码方面的性能优化"></a>3. 代码方面的性能优化</h4><ul>
 <li>减少对闭包的使用（因为过多使用闭包会产生很多不销毁的内存，处理不好的话，会导致内存溢出“栈溢出”），减少闭包的嵌套（减少作用域链的查找层级）</li>
@@ -1085,7 +1279,8 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
 <li>减少filter滤镜的使用</li>
 <li>尽可能减少选择器的层级（选择器是从右向左解析） .box a{} 和 a{}</li>
 <li>尽可能减少TABLE布局</li>
-<li>手动回收堆栈内存（赋值为null）</li>
+<li>手动回收堆栈内存（赋值为null）<br>其他</li>
+<li>CDN（地域分布式服务器），加服务器</li>
 </ul>
 <p>JS前端代码优化的108条建议<br>雅虎CSS代码优化的36条建议 <a href="https://blog.csdn.net/ime33/article/details/77862047" target="_blank" rel="noopener">https://blog.csdn.net/ime33/article/details/77862047</a></p>
 <blockquote>
@@ -1812,7 +2007,7 @@ URL    https://mbd.baidu.com:80/newspage/data/landingsuper?context=%7B&quot;nid&
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
