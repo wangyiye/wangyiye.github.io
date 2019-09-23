@@ -1129,13 +1129,16 @@ pre .javascript .function {
   color: #555;
   line-height: 36px;
   font-size: 30px;
-  font-weight: normal;
+  font-weight: bold;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .site-subtitle {
+  width: 60%;
+  margin: 0 auto;
   margin-top: 10px;
-  font-size: 13px;
-  color: #999;
+  font-size: 16px;
+  color: #fff;
+  background: #555;
 }
 .use-motion .brand {
   opacity: 0;
@@ -1974,7 +1977,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a2ffff;
+  background: #b3acff;
 }
 .links-of-blogroll {
   font-size: 13px;
