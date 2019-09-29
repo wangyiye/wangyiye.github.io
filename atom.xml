@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>yiYe&#39;s Blog</title>
   
-  <subtitle>YOU&#39;VE MADE A BRAVE DECISION, WELCOME.</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyiye.github.io/"/>
@@ -110,7 +110,7 @@
     </summary>
     
     
-      <category term="前端" scheme="https://wangyiye.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="JS" scheme="https://wangyiye.github.io/categories/JS/"/>
     
     
       <category term="指令" scheme="https://wangyiye.github.io/tags/%E6%8C%87%E4%BB%A4/"/>
@@ -137,7 +137,7 @@
     </summary>
     
     
-      <category term="前端" scheme="https://wangyiye.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="JS" scheme="https://wangyiye.github.io/categories/JS/"/>
     
     
       <category term="指令" scheme="https://wangyiye.github.io/tags/%E6%8C%87%E4%BB%A4/"/>
