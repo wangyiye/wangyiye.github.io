@@ -85,7 +85,7 @@
 <meta name="description" content="React基础配置及知识点React MVC 框架 渐进式框架  类库或者框架提供大量的方法，实际开发应用中不能用到所有方法，会把功能按照模块进行单独开发，使用者可根据自身情况选择一个模块的导入使用    + react react-dom(react-native)    + 组件    + JSX    + DOM DIFFreact-router-dom : hash/browserredu">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React基础配置及知识点">
+<meta property="og:title" content="React基础配置与知识">
 <meta property="og:url" content="https://wangyiye.github.io/2019/06/01/React/index.html">
 <meta property="og:site_name" content="yiYe&#39;s Blog">
 <meta property="og:description" content="React基础配置及知识点React MVC 框架 渐进式框架  类库或者框架提供大量的方法，实际开发应用中不能用到所有方法，会把功能按照模块进行单独开发，使用者可根据自身情况选择一个模块的导入使用    + react react-dom(react-native)    + 组件    + JSX    + DOM DIFFreact-router-dom : hash/browserredu">
@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://wangyiye.github.io/2019/06/01/React/REACT.png">
 <meta property="og:updated_time" content="2019-06-27T02:12:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React基础配置及知识点">
+<meta name="twitter:title" content="React基础配置与知识">
 <meta name="twitter:description" content="React基础配置及知识点React MVC 框架 渐进式框架  类库或者框架提供大量的方法，实际开发应用中不能用到所有方法，会把功能按照模块进行单独开发，使用者可根据自身情况选择一个模块的导入使用    + react react-dom(react-native)    + 组件    + JSX    + DOM DIFFreact-router-dom : hash/browserredu">
 <meta name="twitter:image" content="https://wangyiye.github.io/2019/06/01/React/1.png">
 
@@ -136,7 +136,7 @@
 
 
 
-  <title>React基础配置及知识点 | yiYe's Blog</title>
+  <title>React基础配置与知识 | yiYe's Blog</title>
   
 
 
@@ -410,7 +410,7 @@ window.onmouseout = function () {
 
         
         
-          <h1 class="post-title" itemprop="name headline">React基础配置及知识点</h1>
+          <h1 class="post-title" itemprop="name headline">React基础配置与知识</h1>
         
 
         <div class="post-meta">
@@ -472,7 +472,7 @@ window.onmouseout = function () {
 
           
           
-             <span id="/2019/06/01/React/" class="leancloud_visitors" data-flag-title="React基础配置及知识点">
+             <span id="/2019/06/01/React/" class="leancloud_visitors" data-flag-title="React基础配置与知识">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -497,7 +497,7 @@ window.onmouseout = function () {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.2k
+                  2.6k
                 </span>
               
 
@@ -513,7 +513,7 @@ window.onmouseout = function () {
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  10
                 </span>
               
             </div>
@@ -651,7 +651,14 @@ window.onmouseout = function () {
 <li>render 渲染</li>
 <li>componentDidMount 可以获取到dom元素，组件已经挂载到页面中</li>
 <li>componentWillReceiveProps(nextProps)</li>
-<li>状态改变触发shouleComponentUpdate返回true继续false停止(两个参数 nextProps,nextState)修改后的属性和状态(当状态是通过forceUpdate强制更新不会走这一步)</li>
+<li>shouleComponentUpdate状态改变触发返回true继续false停止(两个参数 nextProps,nextState)修改后的属性和状态(当状态是通过forceUpdate强制更新不会走这一步)<br>这里可以做性能优化，react中setState的方法执行，无论状态值是否改变都会使组件重新渲染，造成无用的消耗，可以基于此优化该过程，React.PureComponent源码中就是对该方法进行了重新的配置，将nextState与之前的state信息进行浅比较，相同就返回false让渲染不进行，反之继续。PureComponet组件中几点要注意<ol>
+<li>如果自己设置了shouldComponentUpdate,以自己设置为主。</li>
+<li>是浅比较，第一层，如果是引用数据类型，即使更改了里面的某个键值对，也不会判定为不同，因为比较的是引用地址，如果地址不发生变化，就会判定为相同。</li>
+<li>PureComponent组件对forceUpdate无效，forceUpdate不走shouldComponentUpdate这一钩子函数，直接跳到ComponentWillUpdate</li>
+<li>如果父组件是PureComponent子组件也会具有统一效果，因为父组件不渲染，子组件也不会渲染。</li>
+<li>只适用于属性和状态不频繁更新的组件，用来做优化，相反如果频繁被变化的，会对阻碍性能。以为每次都会进行比较消耗性能。</li>
+</ol>
+</li>
 <li>componentWillUpdate</li>
 <li>render</li>
 <li>conponentDidUpdate</li>
@@ -678,10 +685,13 @@ window.onmouseout = function () {
 <li><p>执行上下文信息传递（祖先与后代组件之间传递）后代需要的信息全部放到上下文中，后代就可以调取使用</p>
 <ul>
 <li><p>同一祖先的上下文中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">static childContextTypes = &#123;</span><br><span class="line">// 指定后代能用的公共状态的类型</span><br><span class="line">xxx:propTypes.number,</span><br><span class="line">xxx:propTypes.string,</span><br><span class="line">xxx:propType.func</span><br><span class="line">&#125;</span><br><span class="line">//生命周期函数，给后代提供能用的公共状态类型指定具体的值,这些值都要放在状态中（初始化状态信息），状态信息改变重新渲染，生命周期函数重新执行，</span><br><span class="line">getChildContext()&#123;</span><br><span class="line">	return &#123;</span><br><span class="line">	xxx:this.state.xxx</span><br><span class="line">	xxx:this.xxx/这里是挂载实例上的方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">static childContextTypes = &#123;</span><br><span class="line">// 指定后代能用的公共状态的类型</span><br><span class="line">xxx:propTypes.number,</span><br><span class="line">xxx:propTypes.string,</span><br><span class="line">xxx:propType.func</span><br><span class="line">&#125;</span><br><span class="line">//生命周期函数，给后代提供能用的公共状态类型指定具体的值,这些值都要放在状态中，这个值可以是挂载在实例上的某个方法（初始化状态信息），状态信息改变重新渲染，生命周期函数重新执行，</span><br><span class="line">getChildContext()&#123;</span><br><span class="line">	return &#123;</span><br><span class="line">	xxx:this.state.xxx</span><br><span class="line">	xxx:this.xxx/这里是挂载实例上的方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>后代组件直接调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//constructor前</span><br><span class="line">	statci childContextTypes =&#123;</span><br><span class="line">//定义信息类型</span><br><span class="line">&#125;</span><br><span class="line">constructor(props,context)&#123;</span><br><span class="line">	super(props,context)</span><br><span class="line">	this.context中存在祖先上下文存储的那些信息</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//constructor前</span><br><span class="line">	static contextTypes =&#123;</span><br><span class="line">       num:PropTypes.number</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>另一种写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 1. 先创建一个上下文对象 </span><br><span class="line">	let ThemeContext = React.createContext();</span><br><span class="line">// 2. 父级组件包在</span><br><span class="line">	return &lt;ThemeContext.Provider value = &#123;</span><br><span class="line">	&#123;</span><br><span class="line">		xxx:this.state.xxx</span><br><span class="line">		func:this.func</span><br><span class="line">	&#125;</span><br><span class="line">&#125;&gt;	&lt;h3&gt; content&lt;/h3&gt; &lt;/ThemeContext.Provider&gt;</span><br><span class="line">// 3. 子组件中使用强制消费</span><br><span class="line">	static contextType = ThemeContext;</span><br><span class="line"></span><br><span class="line">	// 子组件直接this.context调用上下文中存储的信息</span><br><span class="line">	或者</span><br><span class="line">	// 使用consumer组件消费</span><br><span class="line">	return &lt;ThemeContext.Consumer&gt;</span><br><span class="line">	&#123; context =&gt; &#123;</span><br><span class="line">		return  &lt;div onClick = &#123;ev =&gt;&#123;</span><br><span class="line">			// 调用上下文中的方法</span><br><span class="line">			context.func();</span><br><span class="line">		&#125;&#125; &gt;  这里可以直接使用context调用上下文中的存储的信息&lt;/div&gt;</span><br><span class="line">	&#125;&#125;</span><br><span class="line">	 &lt;/ThemeContext.Consumer&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
