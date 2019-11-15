@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyiye.github.io/"/>
-  <updated>2019-11-10T10:51:32.000Z</updated>
+  <updated>2019-09-22T02:12:09.000Z</updated>
   <id>https://wangyiye.github.io/</id>
   
   <author>
@@ -15,32 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>TypeScript(边学边更新)</title>
-    <link href="https://wangyiye.github.io/2019/11/10/TS/"/>
-    <id>https://wangyiye.github.io/2019/11/10/TS/</id>
-    <published>2019-11-10T10:51:32.000Z</published>
-    <updated>2019-11-10T10:51:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="首先贴上官方文档-https-www-tslang-cn-docs-home-html"><a href="#首先贴上官方文档-https-www-tslang-cn-docs-home-html" class="headerlink" title="首先贴上官方文档 https://www.tslang.cn/docs/home.html"></a>首先贴上官方文档 <a href="https://www.tslang.cn/docs/home.html" target="_blank" rel="noopener">https://www.tslang.cn/docs/home.html</a></h2><h3 id="TS到底是个啥？"><a href="#TS到底是个啥？" class="headerlink" title="TS到底是个啥？"></a>TS到底是个啥？</h3><blockquote><p>ts微软开发，JS的超集，最后可以编译成纯javaScript，类似于less；遵循最新的ES规范，还拓展了js的语法；ts变的更像java这些面向对象的后端语言，可以让js开发更加大型的企业级项目；基本现行框架都支持，甚至是基于他开发。基本上以后就他了！！</p></blockquote><h3 id="初始化一个项目试试水"><a href="#初始化一个项目试试水" class="headerlink" title="初始化一个项目试试水"></a>初始化一个项目试试水</h3><ol><li><p>初始化项目:进入你的编程文件夹后，可以使用npm init -y来初始化项目，生成package.json文件。</p></li><li><p>创建tsconfig.json文件:在终端中输入tsc –init：它是一个TypeScript项目的配置文件，可以通过读取它来设置TypeScript编译器的编译参数。</p></li><li><p>安装@types/node模块,使用npm install @types/node –dev-save进行安装。这个主要是解决模块的声明文件问题。</p></li><li><p>编写HelloWorld.ts文件，然后进行保存，代码如下。</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a:string = &quot;HelloWorld&quot;</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure></li><li><p>在Vscode的任务菜单下，打开Terminal下的Run Build Task，然后选择tsc：build-tsconfig.json，这时候就会生成一个helloWorld.js文件</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">var a = &apos;helloworld&apos;;</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure></li></ol><h3 id="TS中数据类型"><a href="#TS中数据类型" class="headerlink" title="TS中数据类型"></a>TS中数据类型</h3><ul><li><p>函数 </p><ol><li><p>函数声明: function add(n1:number,n2:number):number{return n1 + n2}<br>函数表达式：const add = function(n1:number,n2:number){return n1 + n2}<br>箭头函数: const add = (n1:number,n2:number):number =&gt; n1 + n2<br>使用接口来定义函数 : 在这种函数实现接口的情形下，我们称这种定义为callable</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">   interface Complex &#123;</span><br><span class="line">       (bar?:number,...others:boolean[]):number;</span><br><span class="line">   &#125;</span><br><span class="line">   let foo:Complex</span><br><span class="line">   //这种定义方式在可复用的函数声明中非常有用。</span><br><span class="line"></span><br><span class="line">   interface CallMeWithNewToGetString&#123;</span><br><span class="line">new():string</span><br><span class="line">   &#125;</span><br><span class="line">   let foo:CallMeWithNewToGetString</span><br><span class="line">   new foo();</span><br><span class="line">   // 这个在构造函数的声明时非常有用。</span><br></pre></td></tr></table></figure></li><li><p>传参形式:基本传参 可选传参 默认传参 剩余传参</p></li><li><p>函数的重载</p></li></ol></li><li><p>数组</p>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let arr1:number[] //声明一个数值类型的数组</span><br><span class="line">let arr2:Array&lt;string&gt; //声明一个字符串类型的数组</span><br><span class="line">let arr3:boolean[] // 声明一个布尔值的数组</span><br><span class="line">当类型和数量不确定时，使用元数组 let arr4:[number,string]</span><br><span class="line">let arr5:any[] 都未知的情况下，第一个数组</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;首先贴上官方文档-https-www-tslang-cn-docs-home-html&quot;&gt;&lt;a href=&quot;#首先贴上官方文档-https-www-tslang-cn-docs-home-html&quot; class=&quot;headerlink&quot; title=&quot;首先贴上官方
-      
-    
-    </summary>
-    
-    
-      <category term="JS" scheme="https://wangyiye.github.io/categories/JS/"/>
-    
-    
-      <category term="指令" scheme="https://wangyiye.github.io/tags/%E6%8C%87%E4%BB%A4/"/>
-    
-  </entry>
   
   <entry>
     <title>Node基础</title>
